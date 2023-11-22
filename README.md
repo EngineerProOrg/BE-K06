@@ -1,33 +1,11 @@
-Assignment 1:
+# Assignment 2: Caching with Redis
 
-Database
+Viết một webserver với những yêu cầu sau:
 
-Mỗi bài tập sẽ lưu trên file sol-{number}.sql
-
-1. Giải bài tập trên leetcode: 
-
-https://leetcode.com/problems/capital-gainloss/description/ (gợi ý: sử dụng CASE)
-
-https://leetcode.com/problems/count-salary-categories/ (ngoài các cách trên leetcode, hãy nghĩ cách để giúp câu query này nhanh hơn, kể cả thay đổi cấu trúc bản)
-
-2. Bạn hãy viết một script để tạo các bản cho hệ thống với cấu trúc ở dưới
-
-![img.png](img.png)
-
-hệ thống bao gồm:
-
-- class
-- professor: quan hệ one-many với class
-- student: quan hệ many-many với class
-- course: quan hệ one-many với class
-- room: quan hệ one-one với class
-
-3. Hãy viết câu query để tìm:
-- những cặp student-professor có dạy học nhau và số lớp mà họ có liên quan
-- những course (distinct) mà 1 professor cụ thể đang dạy
-- những course (distinct) mà 1 student cụ thể đang học
-- điểm số là A, B, C, D, E, F tương đương với 10, 8, 6, 4, 2, 0
-- điểm số trung bình của 1 học sinh cụ thể (quy ra lại theo chữ cái, và xếp loại học lực (weak nếu avg < 5, average nếu >=5 < 8, good nếu >=8 )
-- điểm số trung bình của các class (quy ra lại theo chữ cái)
-- điểm số trung bình của các course (quy ra lại theo chữ cái)
- 
+1. Sử dụng go-gin + go-redis
+1. 1 API /login, để tạo session cho mỗi người đăng nhập, dùng redis để lưu session id (có thể sử dụng username)
+1. 1 API /ping chỉ cho phép 1 người được gọi tại một thời điểm (với sleep ở bên trong api đó trong 5s)
+1. Đếm số lượng lần 1 người gọi api /ping
+1. Rate limit mỗi người chỉ được gọi API /ping 2 lần trong 60s
+1. 1 API /top/ trả về top 10 người gọi API /ping nhiều nhất
+1. Dùng hyperloglog để lưu xấp sỉ số người gọi api /ping , và trả về trong api /count
